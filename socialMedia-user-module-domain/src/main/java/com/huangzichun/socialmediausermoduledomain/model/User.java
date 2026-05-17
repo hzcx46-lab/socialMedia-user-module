@@ -1,5 +1,10 @@
 package com.huangzichun.socialmediausermoduledomain.model;
 
+import com.huangzichun.socialmediausermoduledomain.event.DomainEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private Long id;
     private String mobile;
@@ -12,4 +17,6 @@ public class User {
     //聚灵根内部维护实体
     private UserProfile userProfile;
     private UserSetting userSetting;
+    // 领域事件容器
+    private final List<DomainEvent> domainEvents = new ArrayList<>();
 }

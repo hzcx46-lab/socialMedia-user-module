@@ -1,6 +1,7 @@
 package com.huangzichun.socialmediausermoduledomain.model;
 
 import com.huangzichun.socialmediausermoduledomain.event.DomainEvent;
+import com.huangzichun.socialmediausermoduledomain.event.UserRegisteredEvent;
 import com.huangzichun.socialmediausermoduledomain.exception.DomainException;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class User {
     private Integer version;
     private Integer deleted;// 0-未删除, 1-已删除
     //聚灵根内部维护实体
-    private UserProfile userProfile;
-    private UserSetting userSetting;
+    private UserProfile profile;
+    private UserSetting setting;
     // 领域事件容器
     private final List<DomainEvent> domainEvents = new ArrayList<>();
 
@@ -53,4 +54,33 @@ public class User {
         user.hxPassword = hxPassword;
 
         return user; }
+    /**
+     * 工厂方法：用户注册
+     */
+    public static User register(Long id, String mobile, Password encryptedPassword) {
+
+        if (mobile == null || mobile.trim().length() != 11) { // 简单校验
+            throw new DomainException("手机号格式不正确");
+        }
+        if (encryptedPassword == null) {
+            throw new DomainException("密码不能为空");
+        }
+
+        User user = new User();
+        user.id = id;
+        user.mobile = mobile;
+        user.password = encryptedPassword;
+        user.status = 1; // 默认正常
+        user.version = 0;
+        user.deleted = 0;
+
+        // 同步初始化关联实体，保持强一致性生命周期
+        user.profile= new UserProfile(id);
+        user.setting = new UserSetting(id);
+
+        // 发布领域事件
+        user.domainEvents.add(new UserRegisteredEvent(id, mobile));
+        return user;
+    }
+
 }

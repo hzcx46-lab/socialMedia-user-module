@@ -12,6 +12,7 @@ public class UserSetting {
         this.commentNotification = 1;
         this.systemNotification = 1;
     }
+    //更新通知
     public void updateNotification(Integer like, Integer comment, Integer system) {
         if (like != null) {
             this.likeNotification = like;

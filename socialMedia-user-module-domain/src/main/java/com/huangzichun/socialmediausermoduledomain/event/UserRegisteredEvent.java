@@ -1,9 +1,8 @@
 package com.huangzichun.socialmediausermoduledomain.event;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class UserRegisteredEvent {
+public class UserRegisteredEvent implements DomainEvent{
     private final String eventId;
     private final LocalDateTime occurredOn;
     private final Long userId;
@@ -14,5 +13,22 @@ public class UserRegisteredEvent {
         this.occurredOn = LocalDateTime.now();
         this.userId = userId;
         this.mobile = mobile;
+    }
+    @Override
+    public String getEventId() {
+        return eventId;
+    }
+
+    @Override
+    public LocalDateTime getOccurredOn() {
+        return occurredOn;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 }

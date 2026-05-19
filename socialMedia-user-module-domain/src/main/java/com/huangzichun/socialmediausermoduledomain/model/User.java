@@ -65,7 +65,6 @@ public class User {
         if (encryptedPassword == null) {
             throw new DomainException("密码不能为空");
         }
-
         User user = new User();
         user.id = id;
         user.mobile = mobile;
@@ -73,11 +72,9 @@ public class User {
         user.status = 1; // 默认正常
         user.version = 0;
         user.deleted = 0;
-
         // 同步初始化关联实体，保持强一致性生命周期
         user.profile= new UserProfile(id);
         user.setting = new UserSetting(id);
-
         // 发布领域事件
         user.domainEvents.add(new UserRegisteredEvent(id, mobile));
         return user;

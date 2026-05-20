@@ -79,5 +79,17 @@ public class User {
         user.domainEvents.add(new UserRegisteredEvent(id, mobile));
         return user;
     }
+    /**
+     * 更新用户资料
+     */
+    public void updateProfile(String nickname, Integer gender, java.time.LocalDate birthday, String city, String avatar, String income, String profession, Integer marriage, String coverPic, java.util.Map<String, Object> tags) {
+        if (this.status == 0) {
+            throw new DomainException("账号已被禁用，无法修改资料");
+        }
+        if (this.profile == null) {
+            this.profile = new UserProfile(this.id);
+        }
+        this.profile.updateBaseInfo(nickname, gender, birthday, city, avatar, income, profession, marriage, coverPic, tags);
+    }
 
 }

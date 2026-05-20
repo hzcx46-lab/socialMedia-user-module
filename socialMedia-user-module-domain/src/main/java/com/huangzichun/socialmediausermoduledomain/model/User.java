@@ -91,5 +91,37 @@ public class User {
         }
         this.profile.updateBaseInfo(nickname, gender, birthday, city, avatar, income, profession, marriage, coverPic, tags);
     }
+    /**
+     * 更新偏好设置
+     */
+    public void updateSetting(Integer likeNotification, Integer commentNotification, Integer systemNotification) {
+        if (this.status == 0) {
+            throw new DomainException("账号已被禁用，无法修改设置");
+        }
+        if (this.setting == null) {
+            this.setting = new UserSetting(this.id);
+        }
+        this.setting.updateNotification(likeNotification, commentNotification, systemNotification);
+    }
 
+    public void enable() {
+        this.status = 1;
+    }
+
+    public void clearDomainEvents() {
+        this.domainEvents.clear();
+    }
+
+    // Getters
+    public Long getId() { return id; }
+    public String getMobile() { return mobile; }
+    public Password getPassword() { return password; }
+    public String getHxUser() { return hxUser; }
+    public String getHxPassword() { return hxPassword; }
+    public Integer getStatus() { return status; }
+    public Integer getVersion() { return version; }
+    public Integer getDeleted() { return deleted; }
+    public UserProfile getProfile() { return profile; }
+    public UserSetting getSetting() { return setting; }
+    public List<DomainEvent> getDomainEvents() { return domainEvents; }
 }

@@ -1,4 +1,4 @@
-package com.huangzichun.socialmediausermoduleapplication.port.command;
+package com.huangzichun.socialmediausermoduleapplication.port.in.command;
 
 public record UserRegisterCommand(
         String mobile,

@@ -1,9 +1,7 @@
 package com.huangzichun.socialmediausermoduledomain.model;
-
 import com.huangzichun.socialmediausermoduledomain.event.DomainEvent;
 import com.huangzichun.socialmediausermoduledomain.event.UserRegisteredEvent;
 import com.huangzichun.socialmediausermoduledomain.exception.DomainException;
-
 import java.util.ArrayList;
 import java.util.List;
 

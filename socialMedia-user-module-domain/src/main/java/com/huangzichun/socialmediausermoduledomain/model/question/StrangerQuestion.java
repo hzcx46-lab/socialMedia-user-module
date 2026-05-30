@@ -32,4 +32,32 @@ public class StrangerQuestion {
         sq.createTime = LocalDateTime.now();
         return sq;
     }
+    //破冰问题更新方法
+    public void updateContent(String question, Integer sortOrder) {
+        if (question != null && !question.trim().isEmpty()) {
+            if (question.length() > 50) {
+                throw new DomainException("破冰问题不能超过50个字符");
+            }
+            this.question = question;
+        }
+        if (sortOrder != null) {
+            this.sortOrder = sortOrder;
+        }
+    }
+
+    public void disable() {
+        this.status = 0;
+    }
+
+    public void enable() {
+        this.status = 1;
+    }
+
+    // Getters
+    public Long getId() { return id; }
+    public Long getUserId() { return userId; }
+    public String getQuestion() { return question; }
+    public Integer getSortOrder() { return sortOrder; }
+    public Integer getStatus() { return status; }
+    public LocalDateTime getCreateTime() { return createTime; }
 }

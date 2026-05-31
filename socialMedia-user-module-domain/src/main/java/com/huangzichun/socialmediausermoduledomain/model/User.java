@@ -19,10 +19,12 @@ public class User {
     private UserSetting setting;
     // 领域事件容器
     private final List<DomainEvent> domainEvents = new ArrayList<>();
-
+    // 禁用默认无参构造（外部禁止直接 new），例如，new User()
+    private User() {}
     /**
      * 工厂方法：从持久化层还原聚合根（不触发领域事件）
      */
+    //User对象的静态工厂方法，从持久化层调出数据，重新组装成领域对象，
     public static User restore(Long id,
                                String mobile,
                                Password encryptedPassword,
@@ -31,6 +33,7 @@ public class User {
                                Integer deleted,
                                String hxUser,
                                String hxPassword) {
+        //业务校验
         if (id == null || id <= 0) {
             throw new DomainException("用户ID必须有效");
         }
@@ -50,10 +53,9 @@ public class User {
         user.deleted = deleted;
         user.hxUser = hxUser;
         user.hxPassword = hxPassword;
-
         return user; }
     /**
-     * 工厂方法：用户注册
+     * 工厂方法：用户注册 static
      */
     public static User register(Long id, String mobile, Password encryptedPassword) {
 

@@ -10,6 +10,7 @@ public class UserBlacklist {
     //私有构造器，确保外部无法直接实例化，强制使用工厂方法
     private UserBlacklist() {}
     //静态static create(),工厂构造法(专门用来生产对象的静态方法)，提供单一入口点
+    //static 防止  UserBlacklist userBlacklist = new UserBlacklist()
     public static UserBlacklist create(Long id, Long userId, Long targetUserId) {
         //进行业务校验
         if (userId == null || targetUserId == null) {

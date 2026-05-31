@@ -44,15 +44,15 @@ public class StrangerQuestion {
             this.sortOrder = sortOrder;
         }
     }
-
+    //语义化方法改变状态
+    //禁用方法
     public void disable() {
         this.status = 0;
     }
-
+    //启用方法
     public void enable() {
         this.status = 1;
     }
-
     // Getters
     public Long getId() { return id; }
     public Long getUserId() { return userId; }

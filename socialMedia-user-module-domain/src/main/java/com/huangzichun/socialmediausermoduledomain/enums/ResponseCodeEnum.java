@@ -20,7 +20,7 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     DUPLICATE_TAG_ERROR("10008", "提交的部分标签已被创建"),
     DUPLICATE_CATEGORY_ERROR("10009", "该分类已被创建"),
     TOKEN_EXPIRED("10010", "Token 已过期"),
-    USER_DOES_NOT_EXIST("100011","用户不存在"),
+    USER_DOES_NOT_EXIST("100011", "用户不存在"),
     /**
      * code: 20001 <br/>
      * info: 访客IP归属地查询失败
@@ -35,3 +35,4 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
+}

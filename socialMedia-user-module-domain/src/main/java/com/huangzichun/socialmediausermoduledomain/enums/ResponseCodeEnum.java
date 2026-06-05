@@ -34,5 +34,16 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     ResponseCodeEnum(String errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+
+
+        @Override
+        public String getErrorCode() {
+            return this.errorCode;
+        }
+
+        @Override
+        public String getErrorMessage() {
+            return this.errorMessage;
+        }
     }
 }

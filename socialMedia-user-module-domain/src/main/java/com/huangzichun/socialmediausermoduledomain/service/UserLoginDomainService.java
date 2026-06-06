@@ -24,6 +24,15 @@ public class UserLoginDomainService {
         User user = userRepository.findByMobile(mobile)
                 //如果没有值，通过lambda实现懒加载抛出用户不存在异常
                 .orElseThrow(() -> new DomainException(ResponseCodeEnum.USER_DOES_NOT_EXIST));
+        if (user.getDeleted() != null && user.getDeleted() == 1) {
+            throw new DomainException("用户已删除");
+        }
+        if (user.getStatus() != null && user.getStatus() == 0) {
+            throw new DomainException("账号已被禁用");
+        }
+        if (!passwordMatcher.matches(rawPassword, user.getPassword())) {
+            throw new DomainException(ResponseCodeEnum.USERNAME_OR_PWD_ERROR);
+        }
         return user;
     }
 

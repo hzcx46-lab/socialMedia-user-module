@@ -17,7 +17,8 @@ public class UserRegisterDomainService {
         this.userRepository = userRepository;
         this.idGenerator = idGenerator;
         this.passwordEncryptor = passwordEncryptor;
-        public User register (String mobile, String rawPassword){
+    }
+        public User register(String mobile, String rawPassword){
             if (userRepository.existsByMobile(mobile)) {
                 throw new DomainException("手机号已注册");
             }
@@ -36,5 +37,4 @@ public class UserRegisterDomainService {
 
             return user;
         }
-    }
 }

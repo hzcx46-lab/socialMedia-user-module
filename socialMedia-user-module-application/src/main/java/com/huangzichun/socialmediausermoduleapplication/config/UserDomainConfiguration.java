@@ -11,4 +11,10 @@ public class UserDomainConfiguration {
             PasswordMatcher passwordMatcher) {
         return new UserLoginDomainService(userRepository, passwordMatcher);
     }
+    @Bean
+    public UserRegisterDomainService userRegisterDomainService(UserRepository userRepository,
+                                                               IdGenerator idGenerator,
+                                                               PasswordEncryptor passwordEncryptor) {
+        return new UserRegisterDomainService(userRepository, idGenerator, passwordEncryptor);
+    }
 }

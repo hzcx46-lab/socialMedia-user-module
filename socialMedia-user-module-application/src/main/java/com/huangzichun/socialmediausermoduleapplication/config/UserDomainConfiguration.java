@@ -17,4 +17,9 @@ public class UserDomainConfiguration {
                                                                PasswordEncryptor passwordEncryptor) {
         return new UserRegisterDomainService(userRepository, idGenerator, passwordEncryptor);
     }
+
+    @Bean
+    public UserProfileDomainService userProfileDomainService(UserRepository userRepository) {
+        return new UserProfileDomainService(userRepository);
+    }
 }

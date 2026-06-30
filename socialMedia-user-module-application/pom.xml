@@ -6,7 +6,6 @@
         <groupId>com.huangzichun</groupId>
         <artifactId>socialMedia-user-module-domain</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.huangzichun</groupId>
     <artifactId>socialMedia-user-module-application</artifactId>
